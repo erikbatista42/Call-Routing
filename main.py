@@ -1,5 +1,39 @@
 from typing import Tuple
 
+
+# read file
+
+def ReadFile(file):
+    dictList = []
+    with open(file, 'r') as f:
+        for line in f:
+            elements = line.rstrip().split(",")
+            dictList.append(dict(zip(elements[::2], elements[1::2])))
+
+    return dictList
+             
+
+a = ReadFile("costs-10.txt")
+print(a)
+
+
+class CheckPrice():
+
+    def __init__(self, spreadsheet, number):
+        self.spreadsheet = spreadsheet
+        self.number = number
+
+        self.num_dict = []
+        with open(spreadsheet, 'r') as f:
+            for line in f:
+                elements = line.rstrip().split(",")
+                self.num_dict.append((dict(zip(elements[::2], elements[1::2]))))
+                # self.num_dict[list(zip(elements[::2]))] = list(zip(elements[1::2]))
+
+    def price(self):
+        print("not yet boiILil")
+    
+
 class TrieNode(object):
     """
     Our trie node implementation. Very basic. but does the job
@@ -68,16 +102,21 @@ def find_prefix(root, prefix: str) -> Tuple[bool, int]:
     # prefix
     return True, node.counter
 
+    
 if __name__ == "__main__":
     root = TrieNode('*')
     add(root, "3476414125")
     add(root, '3476415980')
     add(root, '3476410000')
 
+    test = CheckPrice("costs-10.txt", "911")
+    print(test.num_dict)
     # print(find_prefix(root, 'hac'))
-    print(find_prefix(root, '347641'))
-    print(root.word_finished)
+    # print(find_prefix(root, '347641'))
+    # print(root.word_finished)
     # print(find_prefix(root, 'hackathon'))
     # print(find_prefix(root, 'ha'))
     # print(find_prefix(root, 'hammer'))
+
+
     
